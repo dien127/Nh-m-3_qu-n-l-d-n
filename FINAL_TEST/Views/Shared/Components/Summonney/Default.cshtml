@@ -1,0 +1,10 @@
+﻿@model GioHangViewModel
+
+@if (Model != null)
+{
+    <p>@String.Format("{0:0,0}", Model.TotalPrice) VND</p>
+}
+else
+{
+    <p>Model is null</p>
+}

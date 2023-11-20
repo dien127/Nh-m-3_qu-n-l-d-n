@@ -1,0 +1,136 @@
+﻿
+@model SanPham
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<style>
+    .theLoaiDiv {
+        /* Styles specific to the Thể loại div */
+        background-color: #f0f0f0;
+        padding: 10px;
+        /* Add more styles as needed */
+    }
+
+    .nhaCungCapDiv {
+        /* Styles specific to the Nhà cung cấp div */
+        background-color: #e0e0e0;
+        padding: 15px;
+        /* Add more styles as needed */
+    }
+
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+</style>
+
+
+<div class="container">
+    <form method="post" asp-action="Upsert" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Name">Tên sản phẩm</label>
+            <input asp-for="Name" type="text" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description">Mô tả</label>
+            <input asp-for="Description" type="text" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price">Giá</label>
+            <input asp-for="Price" type="text" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageUrl">Hình ảnh</label>
+            <input asp-for="ImageUrl" type="file" class="form-control" id="Image" name="ImageUrl" accept=".jpg, .jpeg, .png">
+            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        </div>
+        <div class="form-group theLoaiDiv">
+            <label asp-for="TheLoaiId">Thể loại</label>
+            <select asp-for="TheLoaiId" id="theLoaiDropdown" class="form-control">
+                <option disabled selected>-- Chọn thể loại --</option>
+                @foreach (var theLoai in ViewBag.theloai)
+                {
+                    <option value="@theLoai.Id">@theLoai.Name</option>
+                }
+            </select>
+            <span asp-validation-for="TheLoaiId" class="text-danger"></span>
+            <span id="selectedTheLoai" class="selected-item"></span>
+        </div>
+
+        <div class="form-group nhaCungCapDiv">
+            <label asp-for="NhaCungCapId">Nhà cung cấp</label>
+            <select asp-for="NhaCungCapId" id="nhaCungCapDropdown" class="form-control">
+                <option disabled selected>-- Chọn nhà cung cấp --</option>
+
+                @foreach (var ncc in ViewBag.nhaCungCaps)
+                {
+                    <option value="@ncc.Id">@ncc.Name</option>
+                }
+            </select>
+            <span asp-validation-for="NhaCungCapId" class="text-danger"></span>
+            <span id="selectedNhaCungCap" class="selected-item"></span>
+        </div>
+
+
+
+
+
+
+        <button type="submit" class="btn btn-primary" onclick="upsert()">
+            @(Model != null && Model.Id == 0 ? "tạo mới" : "cập nhật")
+        </button>
+        <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"></partial>
+}
+
+<script>
+    function upsert() {
+        // Your logic for upserting (creating or updating) goes here
+
+        // For demonstration purposes, we'll just log a message
+        console.log("Upsert button clicked.");
+
+        // If you want to allow the form submission, remove the next line
+        return false; // Prevents the default form submission behavior
+    }
+    // Lắng nghe sự kiện onchange cho dropdown thể loại
+    // document.getElementById('theLoaiDropdown').addEventListener('change', function () {
+    //     var selectedOption = this.options[this.selectedIndex];
+    //     if (selectedOption.value) {
+    //         document.getElementById('selectedTheLoai').textContent = selectedOption.textContent;
+    //     } else {
+    //         document.getElementById('selectedTheLoai').textContent = '';
+    //     }
+    // });
+
+    // // Lắng nghe sự kiện onchange cho dropdown nhà cung cấp
+    // document.getElementById('nhaCungCapDropdown').addEventListener('change', function () {
+    //     var selectedOption = this.options[this.selectedIndex];
+    //     if (selectedOption.value) {
+    //         document.getElementById('selectedNhaCungCap').textContent = selectedOption.textContent;
+    //     } else {
+    //         document.getElementById('selectedNhaCungCap').textContent = '';
+    //     }
+    // });
+
+    $(document).ready(function () {
+        // Áp dụng Select2 cho ô chọn "Thể loại"
+        $('#theLoaiDropdown').select2();
+
+        // Áp dụng Select2 cho ô chọn "Nhà cung cấp"
+        $('#nhaCungCapDropdown').select2();
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+

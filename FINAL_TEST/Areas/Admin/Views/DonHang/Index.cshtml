@@ -1,0 +1,32 @@
+﻿@model IEnumerable<HoaDon>
+<div class="container">
+    <table class="table">
+        <head>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>OrderStatus</th>
+            <th>Total</th>
+        </tr>
+        </head>
+        <tbody>
+            @foreach (var item in @Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.Address</td>
+                    <td>@item.OrderStatus</td>
+                    <td>@item.Total</td>
+                    <td>
+                        <a href="#">Chi tiết đơn hàng</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

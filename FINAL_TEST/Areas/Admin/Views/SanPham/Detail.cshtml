@@ -1,0 +1,32 @@
+﻿@model SanPham
+<h2>Category Details</h2>
+<table class="table">
+    <tr>
+        <th>ID:</th>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <th>Tên sản phẩm:</th>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <th>Mô tả:</th>
+        <td>@Model.Description</td>
+    </tr>
+    <tr>
+        <th>Giá:</th>
+        <td>@Model.Price</td>
+    </tr>
+    <tr>
+        <th>Hình ảnh :</th>
+        <td>
+            <img src="~/images/@Model.ImageUrl" alt="Category Image" width="100">
+        </td>
+    </tr>
+    <tr>
+        <th>thể loại:</th>
+        <td>@Model.TheLoaiId</td>
+    </tr>
+</table>
+
+<a asp-action="Index" class="btn btn-primary">Trang chủ</a>

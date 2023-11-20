@@ -1,0 +1,46 @@
+﻿@model SanPham
+
+<h2>Product Form</h2>
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Name">Product Name</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Price">Price</label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ImageUrl">Image</label>
+        <input type="file" name="ImageUrl" class="form-control" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NhaCungCapId">Supplier</label>
+        <select asp-for="NhaCungCapId" class="form-control" asp-items="@(new SelectList(ViewBag.nhaCungCaps, "Id", "Name"))"></select>
+        <span asp-validation-for="NhaCungCapId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TheLoaiId">Category</label>
+        <select asp-for="TheLoaiId" class="form-control" asp-items="@(new SelectList(ViewBag.theloai, "Id", "Name"))"></select>
+        <span asp-validation-for="TheLoaiId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

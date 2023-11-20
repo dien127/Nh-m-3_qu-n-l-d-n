@@ -1,0 +1,27 @@
+﻿@model TheLoai
+<div class=container>
+	<table class="table">
+		<head>
+		<tr>
+			<th>Tên thế loại</th>
+			<th>Ngày tạo</th>
+			<th>Chức năng</th>
+		</tr>
+		</head>
+		@foreach (var item in @ViewBag.TheLoai)
+		{
+			<tbody>
+				<tr>
+					<td width="30%">@item.Name</td>
+					<td width="30%">@item.DateCreated</td>
+					<td width="20%">
+						<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+						<a asp-action="Detail" asp-route-id="@item.Id">Detail</a> |
+						<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		}
+	</table>
+	<a asp-controller="TheLoai" asp-action="Create" class="btn btn-primary"> Thêm mới </a>
+</div>

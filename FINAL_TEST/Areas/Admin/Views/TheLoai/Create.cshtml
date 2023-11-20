@@ -1,0 +1,27 @@
+﻿@model TheLoai
+
+<div class="container">
+	<h3>Thêm thể loại</h3>
+	<div asp-validation-summary="All" class="text-danger"></div>
+	<form method="post" enctype="multipart/form-data">
+		<label asp-for="Name">Tên thể loại</label>
+		<input asp-for="Name" type="text" class="form-control" />
+		<span asp-validation-for="Name" class="text-danger"></span>
+
+		<label asp-for="DateCreated">Ngày tạo</label>
+		<input asp-for="DateCreated" type="date" class="form-control" />
+		<span asp-validation-for="DateCreated" class="text-danger"></span>
+
+
+		@* <label asp-for="ImageUrl">Hình ảnh:</label>
+		<input asp-for="ImageUrl" type="file" class="form-control" id="Image" name="ImageUrl" accept=".jpg, .jpeg, .png">
+		<span asp-validation-for="ImageUrl" class="text-danger"></span>
+		</br> *@
+		<button type="submit" class="btn-primary"> Tạo mới </button>
+	</form>
+</div>
+
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial"></partial>
+}

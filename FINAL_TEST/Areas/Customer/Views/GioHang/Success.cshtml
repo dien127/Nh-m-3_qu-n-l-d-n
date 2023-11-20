@@ -1,0 +1,77 @@
+﻿<style>
+    body1 {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container suc {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .order-success {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+        .order-success h2 {
+            color: #333;
+        }
+
+        .order-success ul {
+            list-style: none;
+            padding: 0;
+        }
+
+            .order-success ul li {
+                margin-bottom: 10px;
+            }
+
+        .order-success .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+            .order-success .btn:hover {
+                background-color: #0056b3;
+            }
+
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Successful</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body1>
+    <div class="container suc">
+        <div class="order-success">
+            <h2>Your Order was Successful!</h2>
+            <p>Thank you for your purchase. Your order details are as follows:</p>
+            <ul>
+                <li><strong>Order ID:</strong> #123456</li>
+                <li><strong>Total Amount:</strong> $100.00</li>
+                <li><strong>Payment Method:</strong> Credit Card</li>
+                <!-- Add more order details as needed -->
+            </ul>
+            <p>We will email you the order confirmation shortly. Thank you for shopping with us!</p>
+            <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn">Continue Shopping</a>
+        </div>
+    </div>
+</body1>
+</html>

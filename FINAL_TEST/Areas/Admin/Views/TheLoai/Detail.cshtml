@@ -1,0 +1,23 @@
+﻿<h2>Category Details</h2>
+<table class="table">
+    <tr>
+        <th>ID:</th>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <th>Tên thể loại:</th>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <th>Ngày tạo:</th>
+        <td>@Model.DateCreated.ToString("yyyy-MM-dd HH:mm:ss")</td>
+    </tr>
+    @* <tr>
+    <th>Hình ảnh :</th>
+    <td>
+    <img src="~/images/@Model.ImageUrl" alt="Category Image" width="100">
+    </td>
+    </tr> *@
+</table>
+
+<a asp-action="Index" class="btn btn-primary">Trang chủ</a>

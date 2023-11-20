@@ -1,0 +1,106 @@
+﻿@model IEnumerable<SanPham>
+<div class="container-fuild m-5">
+    <p>
+        <a asp-action="Upsert">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NhaCungCap)
+                </th>
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageUrl)
+                </th>
+
+                <th> Chức năng </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NhaCungCap.Name)
+                    </td>
+                    
+                    <td>
+                        <img src="~/images/@item.ImageUrl" width="150px">
+                    </td>
+
+                    <td>
+                        <a asp-action="Upsert" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Detail" asp-route-id="@item.Id">Detail</a> |
+
+                        <a onclick="xoa(@item.Id , $(this))">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function xoa(id, row) {
+        Swal.fire({
+            title: 'Xác nhận xóa',
+            text: 'Bạn có chắc chắn muốn xóa sản phẩm này?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xóa',
+            cancelButtonText: 'Hủy'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Gửi yêu cầu xóa đến máy chủ
+                $.ajax({
+                    url: `SanPham/Delete/${id}`,
+                    type: 'POST',
+                    success: function (data) {
+                        // Xóa hàng từ bảng sau khi xóa thành công
+                        row.closest('tr').remove();
+
+                        // Hiển thị thông báo xóa thành công
+                        Swal.fire(
+                            'Xóa thành công',
+                            'Sản phẩm đã được xóa.',
+                            'success'
+                        )
+                    },
+                    error: function () {
+                        // Xử lý lỗi nếu có
+                        Swal.fire(
+                            'Lỗi',
+                            'Có lỗi xảy ra khi xóa sản phẩm.',
+                            'error'
+                        )
+                    }
+                });
+            }
+        })
+    }
+</script>
